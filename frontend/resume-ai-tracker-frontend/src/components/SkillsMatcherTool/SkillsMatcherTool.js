@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import './SkillsMatcherTool.css'
 
 
 const SkillsMatcherTool = () => {
@@ -8,7 +9,7 @@ const SkillsMatcherTool = () => {
   const [jobPosition, setJobPosition] = useState('');
   const [requiredSkills, setRequiredSkills] = useState('');
   const [feedbackMessage, setFeedbackMessage] = useState('');
-  const uploadJobDescription = async (e) => {
+  const uploadJobPosting = async (e) => {
     e.preventDefault();
     const url = 'http://localhost:8080/api/job-postings';
     try {
@@ -36,7 +37,7 @@ const SkillsMatcherTool = () => {
   }
   return (
     <>
-      <form>
+      <form className="job-posting-form" onSubmit={uploadJobPosting}>
         <input type="text" placeholder="Enter the company name here" value={companyName} onChange={(e) => setCompanyName(e.target.value)}/>
         <input type="text" placeholder="Enter the company location here" value={companyLocation} onChange={(e) => setCompanyLocation(e.target.value)}/>
         <input type="text" placeholder="Enter the job position here" value={jobPosition} onChange={(e) => setJobPosition(e.target.value)}/>
@@ -46,9 +47,9 @@ const SkillsMatcherTool = () => {
           type="text"
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
-          required
         />
-        <input type="text" placeholder="Enter the required skills here, if applicable, separated by commas" value={requiredSkills} onChange={(e) => setRequiredSkills(e.target.value)}/>
+        <input type="text" placeholder="Enter the required skills here, if applicable, separated by commas" value={requiredSkills} onChange={(e) => setRequiredSkills(e.target.value)} required/>
+        <button type="submit" className="upload-button">Upload</button>
       </form>
     </>
   );

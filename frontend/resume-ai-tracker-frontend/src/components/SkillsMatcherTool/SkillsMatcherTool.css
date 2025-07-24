@@ -1,0 +1,6 @@
+.job-posting-form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+}
